@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// schema.prisma
+
+model InventoryItem {
+  id                   Int       @id @default(autoincrement())
+  name                 String
+  quantity             Int
+  location             String
+  owner                String
+  description          String?
+  sku                  String?
+  category             String?
+  barcode              String?
+  supplier             String?
+  unitOfMeasure        String?
+  weight               String?
+  dimensions           String?
+  dateReceived         DateTime? @default(now())
+  expirationDate       String?
+  lastUpdated          DateTime? @updatedAt
+  status               String?
+  reorderLevel         Int?
+  reorderQuantity      Int?
+  availability         String?
+  costPrice            Float?
+  sellingPrice         Float?
+  batchNumber          String?
+  serialNumber         String?
+  warehouse            String?
+  condition            String?
+  pickZone             String?
+  returnStatus         String?
+  handlingInstructions String?
+
+  @@map("inventory_items")
+}
+
+model User {
+
+  id        Int      @id @default(autoincrement())
+  fullname  String
+  email     String   @unique
+  password  String
+  role      Role     @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  STAFF
+  MANAGER
+}
