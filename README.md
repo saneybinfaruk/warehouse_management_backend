@@ -1,1 +1,1 @@
-To run: npm run start:nodemon
+npm run start:nodemon
