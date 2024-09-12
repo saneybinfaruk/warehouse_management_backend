@@ -90,7 +90,7 @@ const resolvers = {
           totalItems: info._count.category,
         }))
         .sort((a, b) => b.totalItems - a.totalItems)
-        .slice(0, 5);
+        .slice(0, 6);
     },
   },
 
